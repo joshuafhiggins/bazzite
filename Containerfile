@@ -106,6 +106,7 @@ RUN --mount=type=cache,dst=/var/cache \
         ublue-os/bazzite-multilib \
         ublue-os/staging \
         ublue-os/packages \
+        imput/helium \
         ycollet/audinux \
         che/nerd-fonts; \
     do \
@@ -198,6 +199,7 @@ RUN --mount=type=cache,dst=/var/cache \
     --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=secret,id=GITHUB_TOKEN \
+    mkdir -p /opt/helium && \
     dnf5 -y install \
         $(/ctx/ghcurl https://api.github.com/repos/ublue-os/cicpoffs/releases/latest | jq -r --arg name "cicpoffs-fc${FEDORA_VERSION}.rpm" '.assets[] | select(.name == $name).browser_download_url') && \
     dnf5 -y copr enable bieszczaders/kernel-cachyos-addons && \
@@ -215,6 +217,8 @@ RUN --mount=type=cache,dst=/var/cache \
         bazzite-updater \
         ScopeBuddy \
         twitter-twemoji-fonts \
+        helium-bin \
+        zsh \
         google-noto-sans-cjk-fonts \
         lato-fonts \
         fira-code-fonts \
@@ -545,6 +549,7 @@ RUN --mount=type=cache,dst=/var/cache \
         ublue-os/bazzite-multilib \
         ublue-os/staging \
         ublue-os/packages \
+        imput/helium \
         ycollet/audinux \
         che/nerd-fonts; \
     do \
@@ -559,6 +564,7 @@ RUN --mount=type=cache,dst=/var/cache \
     ln -s /usr/bin/true /usr/bin/pulseaudio && \
     mkdir -p /etc/flatpak/remotes.d && \
     curl --retry 3 -Lo /etc/flatpak/remotes.d/flathub.flatpakrepo https://dl.flathub.org/repo/flathub.flatpakrepo && \
+    chsh -s $(which zsh) \
     systemctl enable brew-setup.service && \
     systemctl disable fw-fanctrl.service && \
     systemctl disable scx_loader.service && \
