@@ -25,3 +25,8 @@ mv "$(realpath /opt/helium)" /usr/lib/opt/helium
 echo "==> Installing ZSH..."
 dnf5 -y install zsh
 sed -i 's|^SHELL=.*|SHELL=/usr/bin/zsh|' /etc/default/useradd
+
+# -- Ghostty terminal --
+# Terra is still enabled at this point in the build (finalize.sh disables it).
+echo "==> Installing Ghostty..."
+dnf5 -y install ghostty
