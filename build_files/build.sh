@@ -24,5 +24,8 @@ if [[ "${BUILD_NVIDIA}" == "TRUE" ]]; then
     /ctx/bazzite-nvidia/build.sh
 fi
 
+# Fork customizations, applied to every variant
+/ctx/fork/build.sh
+
 # Finalize
 /ctx/reset-mtimes.sh

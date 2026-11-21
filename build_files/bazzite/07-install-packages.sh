@@ -8,9 +8,6 @@ set -xeuo pipefail
 echo "::group::Install packages"
 trap 'echo "::endgroup::"' EXIT
 
-rm -rf /opt
-mkdir -p /opt
-
 # -- Install Nerd Fonts --
 echo "==> Installing Nerd Fonts..."
 dnf5 -y install \
@@ -34,8 +31,6 @@ dnf5 -y install \
     bazzite-updater \
     ScopeBuddy \
     twitter-twemoji-fonts \
-    helium-bin \
-    zsh \
     google-noto-sans-cjk-fonts \
     lato-fonts \
     fira-code-fonts \
